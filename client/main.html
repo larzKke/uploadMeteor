@@ -1,0 +1,13 @@
+<head>
+  <title>uploadTest</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{#autoForm id="upladForm" collection="Posts" type="insert"}}
+    {{> afQuickField name="title"}}
+    {{> afQuickField name="picture"}}
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</body>
