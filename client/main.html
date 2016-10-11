@@ -13,7 +13,8 @@
 
   <hr>
   {{> quickForm id="uploadAuto" collection="Posts" type="insert"}}
-
+  <hr>
+  {{> file}}
 </body>
 
 <template name="uploadForm">
@@ -38,4 +39,28 @@
   {{else}}
     <div>No files uploaded, yet</div>
   {{/if}}
+</template>
+
+<template name='file'>
+  {{#if imageFile.count}}
+    <ul>
+      {{#each file in imageFile}}
+        <li>
+          <a href="{{file.path}}?download=true" download="{{file.name}}">{{file.name}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <div>No files uploaded, yet</div>
+  {{/if}}
+  <hr>
+  {{#if imageFile.count}}
+    {{#each file in imageFile}}
+      Image:  <img src="{{file.path}}" alt="{{file.name}}" style="width:100px"/>
+    {{/each}}
+  {{else}}
+      Loading Image...
+  {{/if}}
+  <hr>
+  <p>image: {{imageFile.count}}</p>
 </template>

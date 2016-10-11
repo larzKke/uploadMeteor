@@ -45,3 +45,10 @@ Template.uploadForm.events({
     }
   }
 });
+
+
+Template.file.helpers({
+  imageFile: function () {
+    return Images.find();
+  }
+});
