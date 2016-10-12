@@ -1,21 +1,11 @@
-
-<head>
-  <title>Simplest upload form</title>
-</head>
-
-<body>
-  <h1>Simplest upload form!</h1>
-  <p>See <a href="https://github.com/VeliovGroup/Meteor-Files">ostrio:files</a></p>
-
-  {{> uploadForm}}
-
-  {{> uploadedFiles}}
-
-  <hr>
+<template name="Home">
   {{> quickForm id="uploadAuto" collection="Posts" type="insert"}}
   <hr>
+  {{> posts}}
+  <hr>
   {{> file}}
-</body>
+</template>
+
 
 <template name="uploadForm">
   {{#with currentUpload}}
@@ -41,26 +31,37 @@
   {{/if}}
 </template>
 
-<template name='file'>
-  {{#if imageFile.count}}
-    <ul>
-      {{#each file in imageFile}}
-        <li>
-          <a href="{{file.path}}?download=true" download="{{file.name}}">{{file.name}}</a>
-        </li>
-      {{/each}}
-    </ul>
-  {{else}}
-    <div>No files uploaded, yet</div>
-  {{/if}}
-  <hr>
-  {{#if imageFile.count}}
-    {{#each file in imageFile}}
-      Image:  <img src="{{file.path}}" alt="{{file.name}}" style="width:100px"/>
+<template name="posts">
+  <h3>Posts:</h3>
+  {{#if posts.count}}
+    {{#each posts}}
+      <p>Title: <a href="/post/{{_id}}">{{title}}</a></p>
     {{/each}}
   {{else}}
-      Loading Image...
+      Loading Posts...
   {{/if}}
-  <hr>
-  <p>image: {{imageFile.count}}</p>
+</template>
+
+<template name="PostSingle">
+  <h3>Post:</h3>
+  {{post.title}}
+  {{picture}}
+  <p class="button">Button</p>
+</template>
+
+<template name='file'>
+  {{#if Template.subscriptionsReady}}
+    <h3>Images:</h3>
+    {{#if files.count}}
+      {{#each files}}
+        <div style="display: inline-block; border: 1px solid #ccc; padding: 5px; margin: 5px;">
+          <img src="{{path}}" alt="{{name}}" style="width:100px"/> <br>
+          <a href="{{path}}?download=true" download="{{name}}">{{name}}</a>
+        </div>
+      {{/each}}
+    {{else}}
+        Loading Image...
+    {{/if}}
+
+  {{/if}}
 </template>

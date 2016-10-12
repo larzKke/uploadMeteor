@@ -1,3 +1,8 @@
+Meteor.subscribe('Files');
+Meteor.subscribe('Posts');
+
+
+
 Template.uploadedFiles.helpers({
   uploadedFiles: function () {
     return Images.find();
@@ -46,9 +51,46 @@ Template.uploadForm.events({
   }
 });
 
+Template.posts.helpers({
+  posts: function () {
+    return Posts.find({});
+  }
+});
+
+Template.PostSingle.onCreated(function(){
+  var self = this;
+  self.autorun(function(){
+    var id = FlowRouter.getParam('id');
+    self.subscribe('singlePost', id);
+  });
+});
+
+Template.PostSingle.helpers({
+    post: () => {
+        var id = FlowRouter.getParam('id');
+        return Posts.findOne({ _id: id });
+    },
+    picture: () => {
+      var paramId = FlowRouter.getParam('id');
+      var post = Posts.findOne({ _id: paramId });
+      var pictureId = post.picture
+      var picture = Images.findOne({_id: pictureId});
+      return picture;
+    }
+});
+
+Template.PostSingle.events({
+    'click .button': function(){
+      var paramId = FlowRouter.getParam('id');
+      var post = Posts.findOne({ _id: paramId });
+      var pictureId = post.picture
+      var picture = Images.findOne({_id: pictureId});
+      console.log(picture._id)
+    }
+});
 
 Template.file.helpers({
-  imageFile: function () {
-    return Images.find();
+  files: function () {
+    return Images.find({});
   }
 });

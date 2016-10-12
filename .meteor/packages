@@ -27,3 +27,5 @@ aldeed:autoform
 ostrio:files
 aldeed:collection2
 aldeed:simple-schema
+kadira:flow-router
+kadira:blaze-layout
