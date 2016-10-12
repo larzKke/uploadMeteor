@@ -51,7 +51,7 @@ Template.uploadForm.events({
   }
 });
 
-Template.posts.helpers({
+Template.Posts.helpers({
   posts: function () {
     return Posts.find({});
   }
@@ -71,25 +71,26 @@ Template.PostSingle.helpers({
         return Posts.findOne({ _id: id });
     },
     picture: () => {
-      var paramId = FlowRouter.getParam('id');
-      var post = Posts.findOne({ _id: paramId });
-      var pictureId = post.picture
-      var picture = Images.findOne({_id: pictureId});
-      return picture;
+      let paramId = FlowRouter.getParam('id');
+      let post = Posts.findOne({ _id: paramId });
+      let pictureId = post.picture
+      let picture = Images.findOne({_id: pictureId});
+      let picImg = picture._id + '.' + picture.extension;
+      return picImg;
     }
 });
 
 Template.PostSingle.events({
     'click .button': function(){
-      var paramId = FlowRouter.getParam('id');
-      var post = Posts.findOne({ _id: paramId });
-      var pictureId = post.picture
-      var picture = Images.findOne({_id: pictureId});
-      console.log(picture._id)
+      let paramId = FlowRouter.getParam('id');
+      let post = Posts.findOne({ _id: paramId });
+      let pictureId = post.picture
+      let picture = Images.findOne({_id: pictureId});
+      console.log(picture)
     }
 });
 
-Template.file.helpers({
+Template.File.helpers({
   files: function () {
     return Images.find({});
   }
