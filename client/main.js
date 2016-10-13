@@ -75,8 +75,7 @@ Template.PostSingle.helpers({
       let post = Posts.findOne({ _id: paramId });
       let pictureId = post.picture
       let picture = Images.findOne({_id: pictureId});
-      let picImg = picture._id + '.' + picture.extension;
-      return picImg;
+      return picture;
     }
 });
 
@@ -86,7 +85,7 @@ Template.PostSingle.events({
       let post = Posts.findOne({ _id: paramId });
       let pictureId = post.picture
       let picture = Images.findOne({_id: pictureId});
-      console.log(picture)
+      console.log(picture.link())
     }
 });
 

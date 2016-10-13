@@ -38,7 +38,7 @@
       <p>Title: <a href="/post/{{_id}}">{{title}}</a></p>
     {{/each}}
   {{else}}
-      Loading Posts...
+      <strong>no Posts</strong>
   {{/if}}
 </template>
 
@@ -46,7 +46,7 @@
   <h3>Post:</h3>
   {{post.title}}
   {{#if Template.subscriptionsReady}}
-    <img src="public/images/{{picture}}" alt="picture" style="width:20%">
+    <img src="{{picture.link}}" alt="picture" style="width:20%">
   {{/if}}
   <button class="button">button</button>
 </template>
@@ -57,12 +57,12 @@
     {{#if files.count}}
       {{#each files}}
         <div style="display: inline-block; border: 1px solid #ccc; padding: 5px; margin: 5px;">
-          <img src="{{path}}" alt="{{name}}" style="width:100px"/> <br>
-          <a href="{{path}}?download=true" download="{{name}}">{{name}}</a>
+          <img src="{{fileURL this}}" alt="{{name}}" style="width:100px"/> <br>
+          <a href="{{fileURL this}}?download=true" download="{{name}}">{{name}}</a>
         </div>
       {{/each}}
     {{else}}
-        Loading Image...
+        <strong>no Images</strong>
     {{/if}}
 
   {{/if}}
