@@ -82,10 +82,10 @@ Template.PostSingle.helpers({
 Template.PostSingle.events({
     'click .button': function(){
       var paramId = FlowRouter.getParam('id');
-      var post = Posts.findOne({ _id: paramId });
+      var post = Posts.findOne({ _id: paramId },{fields: {picture:1}});
       var pictureId = post.picture
       var picture = Images.findOne({_id: pictureId});
-      console.log(picture._id)
+      console.log(post)
     }
 });
 
