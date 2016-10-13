@@ -1,9 +1,9 @@
 <template name="Home">
   {{> quickForm id="uploadAuto" collection="Posts" type="insert"}}
   <hr>
-  {{> posts}}
+  {{> Posts}}
   <hr>
-  {{> file}}
+  {{> File}}
 </template>
 
 
@@ -31,7 +31,7 @@
   {{/if}}
 </template>
 
-<template name="posts">
+<template name="Posts">
   <h3>Posts:</h3>
   {{#if posts.count}}
     {{#each posts}}
@@ -45,11 +45,13 @@
 <template name="PostSingle">
   <h3>Post:</h3>
   {{post.title}}
-  {{picture}}
-  <p class="button">Button</p>
+  {{#if Template.subscriptionsReady}}
+    <img src="public/images/{{picture}}" alt="picture" style="width:20%">
+  {{/if}}
+  <button class="button">button</button>
 </template>
 
-<template name='file'>
+<template name='File'>
   {{#if Template.subscriptionsReady}}
     <h3>Images:</h3>
     {{#if files.count}}
